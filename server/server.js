@@ -1,5 +1,22 @@
 import express from 'express';
+import server from './graphql/schema'
+
 
 const app = express();
-app.get('/', (req, res) => res.send('Hello World!'));
-app.listen(4000, () => console.log(`Express server running on port 4000`));
+
+server.applyMiddleware({ app });
+
+// Express: Port
+const PORT = 4000 || process.env;
+
+
+// Express: Listener
+app.listen(PORT, () => {
+  console.log(`The server has started on port: ${PORT}`);
+  console.log(`http://localhost:${PORT}/graphql`);
+});
+
+
+
+// Exports
+export default app;
