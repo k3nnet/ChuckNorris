@@ -3,9 +3,7 @@ import { gql } from 'apollo-server-express';
 // GraphQL: TypeDefs
 const TYPEDEFS = gql`
 type Query {
-    random_joke: Joke
-    categories:[String]
-    jokes(category:String):Joke
+    test_query: Joke
   }
 type Joke {
     categories:[String]
@@ -17,7 +15,9 @@ type Joke {
     value: String!
   }
 
-
+  type category{
+      name:
+  }
 `;
 // Exports
 export default TYPEDEFS;

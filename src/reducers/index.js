@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import {jokesReducer} from './jokesReducer'
+import getCategories from './categoryReducer'
 
 export default combineReducers({
-    get:jokesReducer
+    getCategories:getCategories
 })

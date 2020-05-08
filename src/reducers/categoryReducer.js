@@ -5,7 +5,7 @@ const initialState={
     categories:[]
 }
 
-export default function(state=initialState,action){
+const getCategories=function(state=initialState,action){
     
     switch(action.type){
 
@@ -18,3 +18,5 @@ export default function(state=initialState,action){
             return state
     }
 }
+
+export default getCategories

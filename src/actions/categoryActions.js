@@ -16,17 +16,24 @@ const client = new ApolloClient({
 
 export function fetchCategories() {
 
-    return function (dispatch) {
-        client
-            .query({
-                query: gql`
-      query categories
-    `
-            })
-            .then(result => dispatch({
-                type:GET_CATEGORIES,
-                categories:result
-            }));
+    return function(dispatch){
 
+        client.query(
+            {
+                query: gql`
+                query {
+                  categories
+                  }
+              `
+            }
+        ).then((result)=>{
+            console.log(result)
+            dispatch({
+                type:GET_CATEGORIES,
+                categories:result.data
+            })
+        })
     }
+
+   
 }

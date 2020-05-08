@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {fetchCategories} from '../../actions/categoryActions'
 
 import '../pills/pills.css'
 
 class Pills extends Component {
+
+    componentWillMount(){
+        this.props.fetchCategories();
+    }
 
     render() {
 
@@ -24,4 +30,4 @@ class Pills extends Component {
 }
 
 
-export default Pills
+export default connect(null,{fetchCategories})(Pills)

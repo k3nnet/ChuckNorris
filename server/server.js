@@ -7,7 +7,7 @@ const app = express();
 server.applyMiddleware({ app });
 
 // Express: Port
-const PORT = 4000 || process.env;
+const PORT = 3000 || process.env;
 
 
 // Express: Listener
