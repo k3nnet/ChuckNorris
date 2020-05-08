@@ -6,7 +6,9 @@ import Footer from './footer/footer'
 import Card from './card/card'
 import jsonData from './card/jokes.json'
 import { Component } from 'react';
-import Pills from './pills/pills'
+import Pills from './pills/pills';
+import {Provider} from 'react-redux'
+import store from './store'
 class App extends Component{
 
   constructor(){
@@ -33,6 +35,7 @@ class App extends Component{
     })
 
     return (
+      <Provider store={store}>
       <div>
         <Navbar></Navbar>
         <main>
@@ -41,6 +44,7 @@ class App extends Component{
         </main>
         <Footer></Footer>
       </div>
+      </Provider>
     );
 
   }
