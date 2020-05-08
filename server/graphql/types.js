@@ -4,6 +4,11 @@ import { gql } from 'apollo-server-express';
 const TYPEDEFS = gql`
 type Query {
     test_query: Joke
+<<<<<<< HEAD
+=======
+    categories:[string]
+    joke:Joke
+>>>>>>> server
   }
 type Joke {
     categories:[String]
@@ -15,9 +20,12 @@ type Joke {
     value: String!
   }
 
+<<<<<<< HEAD
   type category{
       name:
   }
+=======
+>>>>>>> server
 `;
 // Exports
 export default TYPEDEFS;
