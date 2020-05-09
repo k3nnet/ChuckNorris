@@ -6,7 +6,7 @@ class Card extends Component{
     
     constructor(props){
         super()
-        console.log(props)
+        
 
         this.state={
             joke:props.joke
@@ -16,7 +16,7 @@ class Card extends Component{
 
     render(){
         const joke=this.state.joke
-        console.log(joke)
+       
         return (
             <div>
     

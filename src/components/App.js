@@ -21,7 +21,7 @@ class App extends Component{
 
   render(){
 
-    console.log(this.state.data)
+    console.log(this.state.data)  
 
     const jokes=this.state.data.map(joke=>{
         console.log(joke)

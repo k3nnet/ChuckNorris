@@ -6,7 +6,7 @@ import { HttpLink } from "apollo-link-http";
 import gql from 'graphql-tag';
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: "http://localhost:4000/"
+    uri: "http://localhost:4000/graphql"
 });
 
 const client = new ApolloClient({
@@ -21,16 +21,16 @@ export function fetchCategories() {
         client.query(
             {
                 query: gql`
-                query {
-                  categories
-                  }
+                {
+                    categories
+                    }
               `
             }
         ).then((result)=>{
             console.log(result)
             dispatch({
                 type:GET_CATEGORIES,
-                categories:result.data
+                categories:result
             })
         })
     }
