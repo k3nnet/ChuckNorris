@@ -1,8 +1,9 @@
-import {GET_CATEGORIES} from '../actions/types';
+import {GET_CATEGORIES,ACTIVE_CATEGORY} from '../actions/types';
 
 
 const initialState={
-    categories:[]
+    categories:[],
+    activeCategory:"Music"
 }
 
 const getCategories=function(state=initialState,action){
@@ -13,6 +14,11 @@ const getCategories=function(state=initialState,action){
             return{
                 ...state,
                 categories:action.categories
+            }
+        case ACTIVE_CATEGORY:
+            return{
+                ...state,
+                activeCategory:action.category
             }
         default:
             return state

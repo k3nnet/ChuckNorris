@@ -7,16 +7,10 @@ class Navbar extends Component {
 
     render(){
         return (
-            <div>
-                <nav className="nav">
-                    <a href="#" className="nav-item is-active" active-color="orange">Home</a>
-                    <a href="#" className="nav-item" active-color="green">About</a>
-                    <a href="#" className="nav-item" active-color="blue">Testimonials</a>
-                    <a href="#" className="nav-item" active-color="red">Blog</a>
-                    <a href="#" className="nav-item" active-color="rebeccapurple">Contact</a>
-                    <span className="nav-indicator"></span>
-                </nav>
-            </div>
+            <nav class="nav">
+            <a href="#" class="nav__title">ChuckNorris</a>
+           
+        </nav>
         )
     }
 

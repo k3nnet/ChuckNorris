@@ -1,4 +1,4 @@
-import { GET_CATEGORIES } from '../actions/types';
+import { GET_CATEGORIES,ACTIVE_CATEGORY } from '../actions/types';
 
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -36,4 +36,14 @@ export function fetchCategories() {
     }
 
    
+}
+
+export function selectCategory(category){
+
+    return function(dispatch){
+        dispatch({
+            type:ACTIVE_CATEGORY,
+            category:category
+        })
+    }
 }
