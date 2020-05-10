@@ -14,6 +14,8 @@ import axios from 'axios';
       .catch((error) => console.log(error))
     },
     jokes:(parent,args)=>{
+      console.log(args)
+      console.log(parent)
       return axios.get(`https://api.chucknorris.io/jokes/random?category=${args.category}`)
       .then((response) => response.data)
       .catch((error) => console.log(error))

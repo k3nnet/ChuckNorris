@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect} from 'react-redux'
-import { fetchCategories,selectCategory } from '../../actions/categoryActions'
+import { fetchJoke,selectCategory } from '../../actions/categoryActions'
 
 import '../pills/pills.css'
 
@@ -10,35 +10,40 @@ class Pills extends Component {
         super(props)
        
 
-        this.handleClick=this.handleClick.bind(this)
 
     }
 
     componentWillMount() {
-        this.props.fetchCategories();
+        
+       
     }
 
-    handleClick =function(category){
+    changeCategoryOnClick(category){
         console.log(category)
-        
+        console.log(this.props)
+        this.props.selectCategory(category)
+        this.props.fetchJoke(category)
+      
+
     }
+
+    
 
     render() {
 
         
-        console.log(this.props)
        
+        const activeCategory=this.props.categories
         const { data, loading } = this.props.categories
-        console.log(this.state)
-        
+       
         const categories = data;
         if (loading) {
             return "loading"
         }
 
         if (loading == false) {
-            console.log(this.props.categories.data.categories)
-            selectCategory("TRavel")
+         
+           
 
             return (
 
@@ -50,7 +55,11 @@ class Pills extends Component {
                             {
                                 this.props.categories.data.categories.map((category) => {
                                     return (
-                                        <a   class="profile-card-social__item" target="_blank">{category}
+                                        <a   class="profile-card-social__item" onClick={() => { this.changeCategoryOnClick(category) }}
+                                        className={
+                                
+                                            (category === activeCategory ? " active_item" : "profile-card-social__item")
+                                          } >{category}
        
         </a>
                                     )
@@ -82,4 +91,10 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { fetchCategories })(Pills)
+
+
+
+export default connect(mapStateToProps, {
+        fetchJoke,
+        selectCategory
+})(Pills)

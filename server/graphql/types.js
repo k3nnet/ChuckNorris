@@ -4,7 +4,7 @@ const TYPEDEFS = gql`
 type Query {
     random_joke: Joke
     categories:[String]
-    jokes(category:String):Joke
+    jokes(category:String!):Joke
   }
 type Joke {
     categories:[String]

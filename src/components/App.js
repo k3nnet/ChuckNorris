@@ -4,40 +4,44 @@ import './App.css';
 import Navbar from './navbar/navbar'
 import Footer from './footer/footer'
 import Card from './card/card'
-import jsonData from './card/jokes.json'
+
 import { Component } from 'react';
 import Pills from './pills/pills';
-import {Provider} from 'react-redux'
-import store from './store'
-import {FlexBox, FlexItem} from "react-styled-flex"
 
+
+import {FlexBox, FlexItem} from "react-styled-flex"
+import { connect} from 'react-redux'
+import { fetchCategories,selectCategory } from '../actions/categoryActions'
+import {fetchRandomJoke} from '../actions/randomJokeAction'
 
 class App extends Component{
 
   constructor(){
     super()
-    this.state={
-      data:jsonData
-    }
+  
   }
+
+  componentWillMount() {
+    this.props.fetchCategories()
+    this.props.fetchRandomJoke()
+   
+}
 
 
   render(){
 
-    console.log(this.state.data)
-    const joke=this.state.data[0]
-
+   
     return (
-      <Provider store={store}>
+     
       <FlexBox column={true} center>
         <Navbar></Navbar>
         <FlexBox column={true}>
           <Pills></Pills>
-          <Card key={joke.created_at} joke={joke} ></Card>
+          <Card  ></Card>
         </FlexBox>
         <Footer></Footer>
       </FlexBox>
-      </Provider>
+      
     );
 
   }
@@ -47,4 +51,13 @@ class App extends Component{
 
 }
 
-export default App;
+const mapStateToProps = state => ({
+  categories: state.getCategories.categories,
+  random_joke:state.getRandomJoke.random_joke,
+  joke:state.getCategories.joke
+  
+
+})
+
+
+export default  connect(mapStateToProps, {    fetchCategories,fetchRandomJoke  })(App)

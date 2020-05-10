@@ -1,4 +1,4 @@
-import { GET_CATEGORIES,ACTIVE_CATEGORY } from '../actions/types';
+import { GET_CATEGORIES,ACTIVE_CATEGORY,GET_CATEGORY_JOKE} from '../actions/types';
 
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -36,6 +36,45 @@ export function fetchCategories() {
     }
 
    
+}
+
+export function fetchJoke(categoryIn){
+  
+    const category=categoryIn.toLowerCase()
+    return function(dispatch){
+        console.log(category)
+
+        const query =  gql`
+        query jokes($category: String!){
+            jokes(category:$category){
+                id
+                value
+                categories
+                updated_at
+                icon_url
+                
+              }
+        }
+       
+      `;
+        client.query(
+            {
+                query: query,
+                variables: {
+                    category: category
+                },
+                fetchPolicy: 'network-only'
+            }
+        ).then((result)=>{
+            console.log(result)
+            dispatch({
+                type:GET_CATEGORY_JOKE,
+                joke:result
+            })
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
 }
 
 export function selectCategory(category){

@@ -1,76 +1,119 @@
 import React, { Component } from 'react'
 import '../card/card.css'
 import { connect} from 'react-redux'
+import { fetchJoke ,selectCategory} from '../../actions/categoryActions'
+import {fetchRandomJoke} from '../../actions/randomJokeAction'
 
 class Card extends Component {
 
     constructor(props) {
         super()
-        console.log(props)
+       
+    }
 
-        this.state = {
-            joke: props.joke
-        }
+    componentWillMount() {
+        this.props.fetchJoke(this.props.activeCategory)
+
+       
+        this.props.fetchRandomJoke();
+       
     }
 
 
     render() {
-        const joke = this.state.joke
-        console.log(joke)
-        return (
-            <div className="wrapper">
-                <div class="profile-card js-profile-card">
-                    <div class="profile-card__img">
-                        <img src={joke.icon_url} alt="profile card"/>
-                    </div>
-
-                    <div class="profile-card__cnt js-profile-cnt">
-                            <div class="profile-card__name">Music</div>
-                            <div class="profile-card__txt">{joke.value}</div>
-
-
-                            <div class="profile-card-inf">
-                                <div class="profile-card-inf__item">
-
-                                    <div class="profile-card-inf__txt">{joke.updated_at}</div>
-                                </div>
-
-
-                            </div>
-
-                            <div class="profile-card-social">
-
-
-
-
-                            </div>
-
-                            <div class="profile-card-ctr">
-                                <button class="profile-card__button button--blue js-message-btn">Random</button>
-                                <button class="profile-card__button button--orange">Next</button>
-                            </div>
+        
+        console.log(this.props)
+        
+         const {activeCategory,jokes,random_joke } = this.props
+        let {data,loading}=random_joke
+        console.log(this.props)
+        console.log(activeCategory)
+        console.log(jokes)
+        console.log(random_joke.data)
+        //console.log(data)
+        if(loading){
+            return "getting joke..."
+        }
+        else{
+            let joke={}
+            if(activeCategory==="" || activeCategory==="Random"){
+                console.log(data)
+                
+                if(data!==undefined){
+                    this.props.selectCategory("Random")
+                    joke=random_joke.data.random_joke
+                }
+               
+                
+            }else{
+                console.log(this.props.joke.data.jokes)
+                if(this.props.joke.data.jokes!==null){
+                    joke=this.props.joke.data.jokes;
+                }
+                //
+            }
+            return (
+                <div className="wrapper">
+                    <div class="profile-card js-profile-card">
+                        <div class="profile-card__img">
+                            <img src={joke.icon_url} alt="profile card"/>
                         </div>
-
-                   
-
+    
+                        <div class="profile-card__cnt js-profile-cnt">
+                                <div class="profile-card__name">{activeCategory}</div>
+                                <div class="profile-card__txt">{joke.value}</div>
+    
+    
+                                <div class="profile-card-inf">
+                                    <div class="profile-card-inf__item">
+    
+                                        <div class="profile-card-inf__txt">{joke.updated_at}</div>
+                                    </div>
+    
+    
+                                </div>
+    
+                                <div class="profile-card-social">
+    
+    
+    
+    
+                                </div>
+    
+                                <div class="profile-card-ctr">
+                                    <button class="profile-card__button button--blue js-message-btn">Random</button>
+                                    <button class="profile-card__button button--orange" onClick={() => { this.nextJoke(joke.categories[0]) }}>Next</button>
+                                </div>
+                            </div>
+    
+                       
+    
+                        </div>
                     </div>
-                </div>
-        )
+            )
+        }
 
     }
 
-    next(){
+    nextJoke(category){
                     console.log("next button clicked")
-                }
+                    console.log(category)
+                    this.props.fetchJoke(category)
+    }
 
 
     
 }
 
 const mapStateToProps = state => ({
-    activeCategory:state.getCategories.activeCategory
+    activeCategory:state.getCategories.activeCategory,
+    joke:state.getCategories.joke,
+    random_joke:state.getRandomJoke.random_joke
+    
 
 })
 
 
-export default connect(mapStateToProps, {    })(Card)
+
+
+export default connect(mapStateToProps, {  fetchJoke,fetchRandomJoke, selectCategory  })(Card)
