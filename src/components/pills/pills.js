@@ -48,7 +48,7 @@ class Pills extends Component {
                             {
                                 this.props.categories.data.categories.map((category) => {
                                     return (
-                                        <a   class="category__item" onClick={() => { this.changeCategoryOnClick(category) }}
+                                        <a   class="category__item link" onClick={() => { this.changeCategoryOnClick(category) }}
                                         className={
                                            
                                             (category === activeCategory ? "category__item" : "category__item  github")

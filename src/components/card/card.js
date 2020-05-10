@@ -3,7 +3,7 @@ import '../card/card.css'
 import { connect} from 'react-redux'
 import { fetchJoke ,selectCategory} from '../../actions/categoryActions'
 import {fetchRandomJoke} from '../../actions/randomJokeAction'
-
+import Moment from 'react-moment';
 class Card extends Component {
 
     constructor(props) {
@@ -56,18 +56,18 @@ class Card extends Component {
                 <div className="wrapper">
                     <div class="joke-card">
                         <div class="profile-card__img">
-                            <img src={joke.icon_url} alt="profile card"/>
+                            <img src={joke.icon_url} alt="icon"/>
                         </div>
     
                         <div class="profile-card__cnt js-profile-cnt">
-                                <div class="profile-card__name">{activeCategory}</div>
+                                <div class="card_category">{activeCategory}</div>
                                 <div class="profile-card__txt">{joke.value}</div>
     
     
                                 <div class="joke-card-inf">
                                     <div class="joke-card-inf__item">
     
-                                        <div class="joke-card-inf__txt">{joke.updated_at}</div>
+                                        <div class="joke-card-inf__txt">updated: <Moment  format="D MMM YYYY">{joke.updated_at}</Moment></div>
                                     </div>
     
     

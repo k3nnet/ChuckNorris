@@ -74,11 +74,11 @@
   padding-bottom: 40px;
   transition: all .3s;
 }
-.profile-card__name {
+.card_category {
   font-weight: 700;
   font-size: 24px;
   color: #6944ff;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
 }
 .profile-card__txt {
   font-size: 18px;
