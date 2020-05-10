@@ -31,7 +31,8 @@ export function fetchRandomJoke() {
                      
                    }
                 }
-              `
+              `,
+              fetchPolicy: 'network-only'
             }
         ).then((result)=>{
             console.log(result)

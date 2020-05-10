@@ -9,7 +9,7 @@ import { Component } from 'react';
 import Pills from './pills/pills';
 
 
-import {FlexBox, FlexItem} from "react-styled-flex"
+import {FlexBox} from "react-styled-flex"
 import { connect} from 'react-redux'
 import { fetchCategories,selectCategory } from '../actions/categoryActions'
 import {fetchRandomJoke} from '../actions/randomJokeAction'

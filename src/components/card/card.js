@@ -54,7 +54,7 @@ class Card extends Component {
             }
             return (
                 <div className="wrapper">
-                    <div class="profile-card js-profile-card">
+                    <div class="joke-card">
                         <div class="profile-card__img">
                             <img src={joke.icon_url} alt="profile card"/>
                         </div>
@@ -64,24 +64,24 @@ class Card extends Component {
                                 <div class="profile-card__txt">{joke.value}</div>
     
     
-                                <div class="profile-card-inf">
-                                    <div class="profile-card-inf__item">
+                                <div class="joke-card-inf">
+                                    <div class="joke-card-inf__item">
     
-                                        <div class="profile-card-inf__txt">{joke.updated_at}</div>
+                                        <div class="joke-card-inf__txt">{joke.updated_at}</div>
                                     </div>
     
     
                                 </div>
     
-                                <div class="profile-card-social">
+                                <div class="joke-card-social">
     
     
     
     
                                 </div>
     
-                                <div class="profile-card-ctr">
-                                    <button class="profile-card__button button--blue js-message-btn">Random</button>
+                                <div class="joke-card-ctr">
+                                    <button class="profile-card__button button--blue js-message-btn" onClick={() => { this.nextJoke("Random") }}>Random</button>
                                     <button class="profile-card__button button--orange" onClick={() => { this.nextJoke(joke.categories[0]) }}>Next</button>
                                 </div>
                             </div>
@@ -96,9 +96,16 @@ class Card extends Component {
     }
 
     nextJoke(category){
-                    console.log("next button clicked")
-                    console.log(category)
-                    this.props.fetchJoke(category)
+        console.log("next button clicked")
+        console.log(category)
+        if(category==="Random" || category===undefined){
+            this.props.selectCategory("Random")
+            this.props.fetchRandomJoke()
+        }else{
+            this.props.fetchJoke(category)
+        }
+                   
+                    
     }
 
 

@@ -1,26 +1,19 @@
 import React, { Component } from 'react'
 import { connect} from 'react-redux'
 import { fetchJoke,selectCategory } from '../../actions/categoryActions'
-
+import {FlexBox, FlexItem} from "react-styled-flex"
 import '../pills/pills.css'
 
 class Pills extends Component {
 
     constructor(props){
         super(props)
-       
-
 
     }
 
-    componentWillMount() {
-        
-       
-    }
 
     changeCategoryOnClick(category){
-        console.log(category)
-        console.log(this.props)
+     
         this.props.selectCategory(category)
         this.props.fetchJoke(category)
       
@@ -50,15 +43,15 @@ class Pills extends Component {
 
                 <div>
                     
-                    <div class="row">
-                        <div class="col-lg-12">
+                    <FlexBox >
+                        <FlexItem>
                             {
                                 this.props.categories.data.categories.map((category) => {
                                     return (
-                                        <a   class="profile-card-social__item" onClick={() => { this.changeCategoryOnClick(category) }}
+                                        <a   class="category__item" onClick={() => { this.changeCategoryOnClick(category) }}
                                         className={
-                                
-                                            (category === activeCategory ? " active_item" : "profile-card-social__item")
+                                           
+                                            (category === activeCategory ? "category__item" : "category__item  github")
                                           } >{category}
        
         </a>
@@ -67,8 +60,8 @@ class Pills extends Component {
                             }
 
 
-                        </div>
-                    </div>
+                        </FlexItem>
+                    </FlexBox>
                 </div>
             )
         }
