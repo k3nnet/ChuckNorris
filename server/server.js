@@ -1,22 +1,19 @@
-import express from 'express';
-import server from './graphql/schema'
-import cors from 'cors'
+import express from "express";
+import server from "./graphql/schema";
+import cors from "cors";
 
 const app = express();
 
 server.applyMiddleware({ app });
 
 // Express: Port
-const PORT = 4000 || process.env;
+const PORT = process.env.PORT || 4000;
 
-app.use(cors())
+app.use(cors());
 // Express: Listener
 app.listen(PORT, () => {
   console.log(`The server has started on port: ${PORT}`);
-  console.log(`http://localhost:${PORT}/graphql`);
 });
-
-
 
 // Exports
 export default app;
