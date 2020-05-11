@@ -41,6 +41,8 @@ export function fetchRandomJoke() {
                 type:GET_RANDOM_JOKE,
                 random_joke:result
             })
+        }).catch(error=>{
+            console.log(error)
         })
     }
 

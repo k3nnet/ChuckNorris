@@ -33,6 +33,8 @@ export function fetchCategories() {
                 type:GET_CATEGORIES,
                 categories:result
             })
+        }).catch(error=>{
+            console.log(error)
         })
     }
 
