@@ -13,7 +13,7 @@ class Pills extends Component {
 
 
     changeCategoryOnClick(category){
-     
+       
         this.props.selectCategory(category)
         this.props.fetchJoke(category)
       
@@ -30,10 +30,7 @@ class Pills extends Component {
         const { data, loading } = this.props.categories
        
         const categories = data;
-        if (loading) {
-            return "loading"
-        }
-
+     
         if (loading == false) {
          
            
@@ -43,16 +40,15 @@ class Pills extends Component {
 
                 <div>
                     
-                    <FlexBox >
+                   
                         <FlexItem>
                             {
                                 this.props.categories.data.categories.map((category) => {
+                                    
                                     return (
-                                        <a   class="category__item link" onClick={() => { this.changeCategoryOnClick(category) }}
-                                        className={
-                                           
-                                            (category === activeCategory ? "category__item" : "category__item  github")
-                                          } >{category}
+                                        <a   onClick={() => { this.changeCategoryOnClick(category) }}
+                                        className={(category === this.props.activeCategory ? "category__item active__item" : "category__item  github")
+                                          } >{category} 
        
         </a>
                                     )
@@ -61,12 +57,16 @@ class Pills extends Component {
 
 
                         </FlexItem>
-                    </FlexBox>
+                  
                 </div>
             )
         }
         else {
-            return "loading.."
+            return (
+                <div class="progress-bar">
+                <div class="progress-bar-value"></div>
+              </div>
+            )
         }
 
 

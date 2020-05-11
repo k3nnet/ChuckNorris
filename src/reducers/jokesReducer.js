@@ -4,6 +4,7 @@ const initialState={
     random_joke:{}
 }
 
+//update random joke state
 const getRandomJoke=function(state=initialState,action){
 
     switch(action.type){

@@ -7,6 +7,7 @@ const initialState={
     joke:{}
 }
 
+// update global states associated with joke categories
 const getCategories=function(state=initialState,action){
     
     switch(action.type){

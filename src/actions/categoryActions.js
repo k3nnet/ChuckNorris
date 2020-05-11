@@ -14,6 +14,7 @@ const client = new ApolloClient({
     link
 });
 
+//fetch categories from api
 export function fetchCategories() {
 
     return function(dispatch){
@@ -38,6 +39,7 @@ export function fetchCategories() {
    
 }
 
+// fetch a single joke under given category
 export function fetchJoke(categoryIn){
   
     const category=categoryIn.toLowerCase()
@@ -77,6 +79,7 @@ export function fetchJoke(categoryIn){
     }
 }
 
+//change active category
 export function selectCategory(category){
 
     return function(dispatch){

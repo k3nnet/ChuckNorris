@@ -33,12 +33,12 @@ class App extends Component{
    
     return (
      
-      <FlexBox column={true} center>
+      <FlexBox column={true} >
         <Navbar></Navbar>
-        <FlexBox column={true}>
-          <Pills></Pills>
-          <Card  ></Card>
+        <FlexBox center >
+        <Pills></Pills>
         </FlexBox>
+        <Card></Card>
         <Footer></Footer>
       </FlexBox>
       
@@ -51,6 +51,7 @@ class App extends Component{
 
 }
 
+//make  states available in props
 const mapStateToProps = state => ({
   categories: state.getCategories.categories,
   random_joke:state.getRandomJoke.random_joke,
@@ -59,5 +60,5 @@ const mapStateToProps = state => ({
 
 })
 
-
+//connect states and fuctions to props
 export default  connect(mapStateToProps, {    fetchCategories,fetchRandomJoke  })(App)

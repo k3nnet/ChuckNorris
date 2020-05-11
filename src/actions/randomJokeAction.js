@@ -14,6 +14,7 @@ const client = new ApolloClient({
     link
 });
 
+//fetch a single random joke from api
 export function fetchRandomJoke() {
 
     return function(dispatch){
